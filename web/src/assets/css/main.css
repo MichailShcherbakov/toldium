@@ -1,4 +1,54 @@
-@import './base.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .max-h-1\/2 {
+    max-height: 50%;
+  }
+
+  .max-h-2\/4 {
+    max-height: 50%;
+  }
+
+  .h-18 {
+    height: 4.5rem;
+  }
+
+  .w-26 {
+    width: 6.5rem;
+  }
+}
+
+@layer components {
+  .ui-ring {
+    @apply outline-none ring-blue-300 dark:ring-blue-600 dark:ring-offset-slate-700;
+  }
+
+  .scrollbar-border::-webkit-scrollbar-track,
+  .scrollbar-border::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    border: theme("borderWidth.DEFAULT") solid transparent;
+  }
+
+  .scrollbar-border-2::-webkit-scrollbar-track,
+  .scrollbar-border-2::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    border: theme("borderWidth.2") solid transparent;
+  }
+
+  .scrollbar-border-4::-webkit-scrollbar-track,
+  .scrollbar-border-4::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    border: theme("borderWidth.4") solid transparent;
+  }
+}
+
+* {
+  font-family: "Noto Sans", sans-serif;
+}
+
+/* @import './base.css';
 
 #app {
   max-width: 1280px;
@@ -33,3 +83,4 @@ a,
     padding: 0 2rem;
   }
 }
+ */

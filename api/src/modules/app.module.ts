@@ -6,6 +6,9 @@ import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { UUID } from "../tools/scalar/uuid";
 import { join } from "path";
 import { UsersModule } from "./users/users.module";
+import { MessagesModule } from "./messages/messages.module";
+import { ChannelsModule } from "./channels/channels.module";
+import { MembersModule } from "./members/members.module";
 
 @Module({
   imports: [
@@ -18,6 +21,9 @@ import { UsersModule } from "./users/users.module";
     }),
     DbModule,
     UsersModule,
+    MessagesModule,
+    ChannelsModule,
+    MembersModule,
   ],
 })
 export class AppModule {}

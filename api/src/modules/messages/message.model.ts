@@ -12,14 +12,20 @@ export class Message {
   content!: string;
 
   @Field(() => Date)
-  createAt!: Date;
+  createdAt!: Date;
 
   @Field(() => Date)
   updatedAt!: Date;
 
-  @Field(() => Channel)
-  channel!: Channel;
+  @Field(() => UUID)
+  memberId!: string;
 
   @Field(() => Member)
   member!: Member;
+
+  @Field(() => UUID)
+  channelId!: string;
+
+  @Field(() => Channel)
+  channel!: Channel;
 }

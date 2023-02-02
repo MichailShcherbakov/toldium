@@ -19,6 +19,46 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Member {
+  id: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  channelId: UUID!
+  channel: Channel!
+  userId: UUID!
+  user: User!
+}
+
+type Message {
+  id: UUID!
+  content: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  memberId: UUID!
+  member: Member!
+  channelId: UUID!
+  channel: Channel!
+}
+
+type Channel {
+  id: UUID!
+  name: String!
+  desc: String
+  avatarURL: String
+  kind: String!
+  memberLimit: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  unread: Int!
+  lastMessageId: UUID
+  lastMessage: Message
+}
+
 type Query {
   getUsers: [User!]!
+  getUserById(userId: UUID!): User
+  getMessagesByChannelId(channelId: UUID!): [Message!]!
+  getChannelById(channelId: String!): Channel
+  getChannelsByUserId(userId: String!): [Channel!]!
+  getMembersByChannelId(channelId: UUID!): [Member!]!
 }

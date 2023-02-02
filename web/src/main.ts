@@ -4,7 +4,12 @@ import { apolloClient } from "./apolloClient";
 import { DefaultApolloClient } from "@vue/apollo-composable";
 import App from "./App.vue";
 import router from "./router";
-import "./assets/css/main.css";
+
+import "./theme";
+
+import "@fontsource/noto-sans";
+
+import "~/assets/css/main.css";
 
 const app = createApp({
   setup() {

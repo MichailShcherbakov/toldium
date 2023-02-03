@@ -6,7 +6,7 @@ defineProps<{
 
 <template>
   <button
-    class="bg-blue-600 text-gray-100 rounded-sm h-10 hover:bg-blue-700 focus:ring-2 ring-offset-2 ring-offset-slate-700 ring-blue-600"
+    class="bg-blue-600 text-gray-100 rounded-sm h-10 hover:bg-blue-600/90 focus:ring-2 ring-offset-2 ring-offset-slate-700 ring-blue-600"
   >
     {{ label }}
   </button>

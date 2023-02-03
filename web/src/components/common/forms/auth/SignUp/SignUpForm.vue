@@ -16,11 +16,9 @@ import AuthBtn from "../components/AuthBtn.vue";
       <AuthInput label="Username" />
       <AuthInput label="Password" secure />
       <AuthInput label="Repeat password" secure />
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-3">
         <AuthBtn label="Sing Up" />
-        <div class="flex flex-row items-center gap-1">
-          <AuthLink label="Already have an account?" href="" class="text-sm" />
-        </div>
+        <AuthLink label="Already have an account?" href="" class="text-sm" />
         <p class="text-xs text-gray-400 font-medium">
           By registering, you agree to
           <AuthLink label="Terms of Service" href="" /> and

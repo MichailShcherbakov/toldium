@@ -1,12 +1,20 @@
 import { Args, Query, Resolver } from "@nestjs/graphql";
 import UserEntity from "~/db/entities/user.entity";
 import { UUID } from "~/tools/scalar/uuid";
+import AuthGuard from "../auth/auth.guard";
+import { CurrentUser, Iam } from "../auth/current-user";
 import { User } from "./user.model";
 import { PrimitiveUser, UsersService } from "./users.service";
 
 @Resolver(_of => User)
 export class UsersResolver {
   public constructor(private readonly usersService: UsersService) {}
+
+  @AuthGuard()
+  @Query(_returns => User)
+  public async whoAmI(@CurrentUser() user: Iam): Promise<PrimitiveUser> {
+    return this.usersService.getUserByIdOrFail(user.id);
+  }
 
   @Query(_returns => [User])
   public async getUsers(): Promise<PrimitiveUser[]> {

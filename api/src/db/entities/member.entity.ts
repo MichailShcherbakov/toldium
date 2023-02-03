@@ -9,14 +9,14 @@ export class MemberEntity extends IEntity {
   channelId!: ChannelEntity["id"];
 
   @ManyToOne(_type => ChannelEntity)
-  @JoinColumn({ name: "channel_id" })
+  @JoinColumn({ name: "channel_id", referencedColumnName: "id" })
   channel!: ChannelEntity | undefined;
 
   @Column({ name: "user_id", type: "uuid" })
   userId!: UserEntity["id"];
 
   @ManyToOne(_type => UserEntity)
-  @JoinColumn({ name: "user_id" })
+  @JoinColumn({ name: "user_id", referencedColumnName: "id" })
   user!: UserEntity | undefined;
 }
 

@@ -4,6 +4,7 @@ import { Repository } from "typeorm";
 import ChannelEntity from "~/db/entities/channel.entity";
 import MessageEntity from "~/db/entities/message.entity";
 import { Message } from "./message.model";
+import { CreateMessageInput } from "./messages.input";
 
 export type PrimitiveMessage = Omit<Message, "channel" | "member">;
 
@@ -13,6 +14,18 @@ export class MessagesService {
     @InjectRepository(MessageEntity)
     private readonly messagesRepo: Repository<MessageEntity>,
   ) {}
+
+  public async createMessage(
+    input: CreateMessageInput,
+  ): Promise<MessageEntity> {
+    return await this.messagesRepo.save(
+      this.messagesRepo.create({
+        memberId: input.memberId,
+        channelId: input.channelId,
+        content: input.content,
+      }),
+    );
+  }
 
   public async getMessagesByChannelId(
     channelId: ChannelEntity["id"],

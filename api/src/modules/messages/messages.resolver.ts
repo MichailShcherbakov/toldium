@@ -1,4 +1,12 @@
-import { Args, Parent, Query, ResolveField, Resolver } from "@nestjs/graphql";
+import {
+  Args,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+  Subscription,
+} from "@nestjs/graphql";
 import { Message } from "./message.model";
 import { UUID } from "~/tools/scalar/uuid";
 import { MessagesService, PrimitiveMessage } from "./messages.service";
@@ -9,6 +17,9 @@ import {
 } from "../channels/channels.service";
 import { Member } from "../members/members.model";
 import { MembersService, PrimitiveMember } from "../members/members.service";
+import { CreateMessageInput } from "./messages.input";
+import { PubSub } from "graphql-subscriptions";
+import { InjectPubSub } from "../qraphql.module";
 
 @Resolver(_of => Message)
 export class MessagesResolver {
@@ -16,6 +27,8 @@ export class MessagesResolver {
     private readonly messagesService: MessagesService,
     private readonly channelsService: ChannelsService,
     private readonly membersService: MembersService,
+    @InjectPubSub()
+    private readonly pubSub: PubSub,
   ) {}
 
   @Query(_returns => [Message])
@@ -49,5 +62,25 @@ export class MessagesResolver {
     );
 
     return this.membersService.convertEntityToModel(member);
+  }
+
+  @Mutation(_returns => Message)
+  public async createMessage(
+    @Args("createMessageInput") input: CreateMessageInput,
+  ): Promise<PrimitiveMessage> {
+    const message = this.messagesService.convertEntityToModel(
+      await this.messagesService.createMessage(input),
+    );
+
+    this.pubSub.publish("onMessageAdded", { onMessageAdded: message });
+
+    return message;
+  }
+
+  @Subscription(_returns => Message, {
+    name: "onMessageAdded",
+  })
+  onMessageAdded() {
+    return this.pubSub.asyncIterator("onMessageAdded");
   }
 }

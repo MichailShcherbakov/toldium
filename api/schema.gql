@@ -54,11 +54,47 @@ type Channel {
   lastMessage: Message
 }
 
+type Tokens {
+  accessToken: String!
+  refreshToken: String!
+}
+
 type Query {
+  whoAmI: User!
   getUsers: [User!]!
   getUserById(userId: UUID!): User
   getMessagesByChannelId(channelId: UUID!): [Message!]!
   getChannelById(channelId: String!): Channel
   getChannelsByUserId(userId: String!): [Channel!]!
   getMembersByChannelId(channelId: UUID!): [Member!]!
+}
+
+type Mutation {
+  signIn(signInInput: SignInInput!): Tokens!
+  signUp(signUpInput: SignUpInput!): User!
+  refreshTokens(refreshToken: String!): Tokens!
+  signOut(refreshToken: String!): Boolean!
+  createMessage(createMessageInput: CreateMessageInput!): Message!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+input SignUpInput {
+  name: String!
+  email: String!
+  password: String!
+  avatarURL: String
+}
+
+input CreateMessageInput {
+  channelId: UUID!
+  memberId: UUID!
+  content: String!
+}
+
+type Subscription {
+  onMessageAdded: Message!
 }

@@ -12,14 +12,14 @@ export class MessageEntity extends IEntity {
   memberId!: MemberEntity["id"];
 
   @ManyToOne(() => MemberEntity)
-  @JoinColumn({ name: "member_id" })
+  @JoinColumn({ name: "member_id", referencedColumnName: "id" })
   member!: MemberEntity | undefined;
 
   @Column({ name: "channel_id", type: "uuid" })
   channelId!: ChannelEntity["id"];
 
   @ManyToOne(() => ChannelEntity)
-  @JoinColumn({ name: "channel_id" })
+  @JoinColumn({ name: "channel_id", referencedColumnName: "id" })
   channel!: ChannelEntity | undefined;
 }
 

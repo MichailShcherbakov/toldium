@@ -6,7 +6,13 @@ module.exports = {
     "./src/**/*.{ts,vue}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        "18": "4.5rem",
+        "114": "28rem",
+        "120": "30rem",
+      },
+    },
   },
   plugins: [
     require("tailwind-scrollbar")({ nocompatible: true }),

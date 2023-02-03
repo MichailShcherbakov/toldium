@@ -20,6 +20,8 @@ import { MembersService, PrimitiveMember } from "../members/members.service";
 import { CreateMessageInput } from "./messages.input";
 import { PubSub } from "graphql-subscriptions";
 import { InjectPubSub } from "../qraphql.module";
+import AuthGuard from "../auth/auth.guard";
+import { CurrentUser, Iam } from "../auth/current-user";
 
 @Resolver(_of => Message)
 export class MessagesResolver {
@@ -77,10 +79,11 @@ export class MessagesResolver {
     return message;
   }
 
+  @AuthGuard()
   @Subscription(_returns => Message, {
     name: "onMessageAdded",
   })
-  onMessageAdded() {
+  onMessageAdded(@CurrentUser() _user: Iam) {
     return this.pubSub.asyncIterator("onMessageAdded");
   }
 }

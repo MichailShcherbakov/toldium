@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-export const GET_CHANNELS_BY_USER_ID = gql`
-  query GetChannelsByUserId($userId: String!) {
-    getChannelsByUserId(userId: $userId) {
+export const GET_CHANNELS = gql`
+  query GetChannels {
+    getChannels {
       id
       kind
       createdAt

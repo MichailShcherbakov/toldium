@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <button
-    class="flex flex-col w-20 h-16 full items-center justify-center gap-1 rounded-md hover:dark:bg-slate-700/40"
+    class="flex flex-col w-20 h-16 full items-center justify-center gap-1 rounded hover:dark:bg-slate-700/40"
     :class="{ 'dark:bg-slate-700/70 hover:dark:bg-slate-700/70': isActive }"
   >
     <div

@@ -43,19 +43,5 @@ const groupedMessages = computed(() => {
     >
       <MessageListItem :message="message" :onlyContent="isGrouped" />
     </li>
-    <li
-      v-for="{ message, isGrouped } in groupedMessages"
-      :key="message.id"
-      class="flex flex-row w-full h-min"
-    >
-      <MessageListItem :message="message" :onlyContent="isGrouped" />
-    </li>
-    <li
-      v-for="{ message, isGrouped } in groupedMessages"
-      :key="message.id"
-      class="flex flex-row w-full h-min"
-    >
-      <MessageListItem :message="message" :onlyContent="isGrouped" />
-    </li>
   </ul>
 </template>

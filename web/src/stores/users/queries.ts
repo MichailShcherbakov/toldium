@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-export const GET_USER_BY_ID = gql`
-  query GetUserById($userId: UUID!) {
-    getUserById(userId: $userId) {
+export const WHO_AM_I = gql`
+  query WhoAmI {
+    whoAmI {
       id
       name
       email

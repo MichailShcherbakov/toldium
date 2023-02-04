@@ -29,18 +29,22 @@ export class GraphQLModule {
           resolvers: { UUID },
           playground: false,
           plugins: [ApolloServerPluginLandingPageLocalDefault()],
+          cors: {
+            credentials: true,
+            origin: true,
+          },
           subscriptions: {
             "graphql-ws": {
               path: "/graphql",
               onConnect: (context: Context<any>) => {
-                const { connectionParams, extra } = context;
+                /*  const { connectionParams, extra } = context;
 
-                extra.user = { user: {} };
+                extra.user = { user: {} }; */
               },
             },
           },
-          context: (context: any) => {
-            if (context?.extra?.request) {
+          context: context => {
+            /* if (context?.extra?.request) {
               return {
                 req: {
                   ...context?.extra?.request,
@@ -50,9 +54,9 @@ export class GraphQLModule {
                   },
                 },
               };
-            }
+            } */
 
-            return { req: context?.req };
+            return { req: context.req, res: context.res };
           },
         }),
       ],

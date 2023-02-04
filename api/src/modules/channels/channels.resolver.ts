@@ -6,6 +6,8 @@ import {
   ResolveField,
   Resolver,
 } from "@nestjs/graphql";
+import AuthGuard from "../auth/auth.guard";
+import { CurrentUser, Iam } from "../auth/current-user";
 import { Message } from "../messages/message.model";
 import {
   MessagesService,
@@ -21,6 +23,7 @@ export class ChannelsResolver {
     private readonly messagesService: MessagesService,
   ) {}
 
+  @AuthGuard()
   @Query(_returns => Channel, { nullable: true })
   public async getChannelById(
     @Args("channelId") channelId: string,
@@ -32,11 +35,12 @@ export class ChannelsResolver {
     return this.channelsService.convertEntityToModel(channel);
   }
 
+  @AuthGuard()
   @Query(_returns => [Channel])
-  public async getChannelsByUserId(
-    @Args("userId") userId: string,
+  public async getChannels(
+    @CurrentUser() user: Iam,
   ): Promise<PrimitiveChannel[]> {
-    const channels = await this.channelsService.getChannelsByUserId(userId);
+    const channels = await this.channelsService.getChannelsByUserId(user.id);
 
     return channels.map(channel =>
       this.channelsService.convertEntityToModel(channel),

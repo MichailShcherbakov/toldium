@@ -36,7 +36,7 @@ function onClick() {
 
 <template>
   <button
-    class="flex flex-row flex-1 items-center w-full h-20 px-3 rounded-lg gap-4 select-none cursor-pointer hover:bg-gray-100 hover:dark:bg-slate-700/40 focus:ring-2 ring-offset-1 ui-ring overflow-hidden"
+    class="flex flex-row flex-1 items-center w-full h-20 px-3 rounded-md gap-4 select-none cursor-pointer hover:bg-gray-100 hover:dark:bg-slate-700/40 focus:ring-2 ring-offset-1 ui-ring overflow-hidden"
     :class="{ 'dark:bg-slate-700/70 hover:dark:bg-slate-700/70': isActive }"
     @click="onClick"
   >

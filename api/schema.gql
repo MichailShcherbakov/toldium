@@ -65,14 +65,19 @@ type Query {
   getUserById(userId: UUID!): User
   getMessagesByChannelId(channelId: UUID!): [Message!]!
   getChannelById(channelId: String!): Channel
-  getChannelsByUserId(userId: String!): [Channel!]!
+  getChannels: [Channel!]!
   getMembersByChannelId(channelId: UUID!): [Member!]!
 }
 
 type Mutation {
   signIn(signInInput: SignInInput!): Tokens!
   signUp(signUpInput: SignUpInput!): User!
-  refreshTokens(refreshToken: String!): Tokens!
+
+  """Use for web apps"""
+  refreshTokensWeb: Tokens!
+
+  """Use for mobile apps"""
+  refreshTokensMobile(refreshToken: String!): Tokens!
   signOut(refreshToken: String!): Boolean!
   createMessage(createMessageInput: CreateMessageInput!): Message!
 }

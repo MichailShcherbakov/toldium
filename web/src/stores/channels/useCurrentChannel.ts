@@ -1,17 +1,18 @@
-import { ref, toRef, watch } from "vue";
+import { computed, ref, toRef, watch } from "vue";
 import { useQuery } from "@vue/apollo-composable";
 import { GET_CHANNEL_BY_ID } from "~/stores/channels/queries";
 import type { Channel } from "./type";
 import { defineStore } from "pinia";
+import { useRoute } from "vue-router";
 
 const useChannelStore = defineStore("channels", () => {
-  const currentChannelId = ref<string | null>(null);
+  const route = useRoute();
 
-  function setCurrentChannelId(channelId: Channel["id"] | null) {
-    currentChannelId.value = channelId;
-  }
+  const currentChannelId = computed<string | null>(
+    () => route.params.id as any,
+  );
 
-  return { currentChannelId, setCurrentChannelId };
+  return { currentChannelId };
 });
 
 export const useCurrentChannel = () => {
@@ -30,6 +31,5 @@ export const useCurrentChannel = () => {
   return {
     currentChannel,
     currentChannelId: toRef(channelStore, "currentChannelId"),
-    setCurrentChannelId: channelStore.setCurrentChannelId,
   };
 };

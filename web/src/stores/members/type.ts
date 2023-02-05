@@ -4,7 +4,7 @@ import type { User } from "../users/type";
 export type Member = {
   id: string;
   userId: string;
-  user: User | null;
+  user: User;
   channelId: string;
-  channel: Channel | null;
+  channel: Channel;
 };

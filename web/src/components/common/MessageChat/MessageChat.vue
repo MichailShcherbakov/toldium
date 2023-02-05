@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AttachIcon from "~/assets/icons/attach.svg?component";
 import SendIcon from "~/assets/icons/send.svg?component";
-import EmojIcon from "~/assets/icons/emoji.svg?component";
+import EmojiIcon from "~/assets/icons/emoji.svg?component";
 import MicIcon from "~/assets/icons/mic.svg?component";
 import InfoIcon from "~/assets/icons/info.svg?component";
 import UiInput from "~/components/ui/UiInput.vue";
@@ -44,7 +44,7 @@ const { currentChannel } = useCurrentChannel();
         <UiInput class="w-full h-min py-2.5" />
         <div class="sticky top-0 flex flex-row items-center w-min h-min p-0.5">
           <UiIconBtn>
-            <EmojIcon class="w-6 h-6" />
+            <EmojiIcon class="w-6 h-6" />
           </UiIconBtn>
           <UiIconBtn>
             <MicIcon class="w-6 h-6" />

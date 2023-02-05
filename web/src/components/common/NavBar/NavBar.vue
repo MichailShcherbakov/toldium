@@ -1,76 +1,19 @@
 <script setup lang="ts">
-import CategoryListItem from "./CategoryListItem.vue";
-import ChatsIcon from "~/assets/icons/chats.svg?component";
-import UnreadIcon from "~/assets/icons/unread.svg?component";
-import PersonIcon from "~/assets/icons/person.svg?component";
-import OtherIcon from "~/assets/icons/other.svg?component";
-import BotIcon from "~/assets/icons/bot.svg?component";
-import SettingsIcon from "~/assets/icons/settings.svg?component";
-import EditIcon from "~/assets/icons/edit.svg?component";
-// import AccountBtn from "./AccountBtn.vue";
-
-const unread = 5;
+import AccountBtn from "./AccountBtn.vue";
+import AddChannelBtn from "./AddChannelBtn.vue";
+import ChannelList from "./ChannelList.vue";
+// import CategoryList from "./CategoryList.vue";
 </script>
 
 <template>
   <nav
-    class="flex flex-col flex-shrink-0 h-full dark:bg-slate-900/60 bg-gray-100 overflow-y-auto overflow-x-hidden"
+    class="flex flex-col flex-shrink-0 h-full dark:bg-zinc-900/80 bg-gray-100 overflow-y-auto overflow-x-hidden pt-3"
   >
-    <div class="px-2 py-6 flex flex-col w-full h-full justify-between gap-2">
-      <ul
-        class="flex flex-col w-full h-full items-center overflow-y-auto overflow-x-hidden gap-2"
-      >
-        <!-- <li>
-          <AccountBtn />
-        </li> -->
-        <li>
-          <CategoryListItem label="All chats" :unread="unread" :isActive="true">
-            <template #icon>
-              <ChatsIcon />
-            </template>
-          </CategoryListItem>
-        </li>
-        <li>
-          <CategoryListItem label="Unread" :unread="unread">
-            <template #icon>
-              <UnreadIcon />
-            </template>
-          </CategoryListItem>
-        </li>
-        <li>
-          <CategoryListItem label="Personal" :unread="unread">
-            <template #icon>
-              <PersonIcon />
-            </template>
-          </CategoryListItem>
-        </li>
-        <li>
-          <CategoryListItem label="Bots" :unread="unread">
-            <template #icon>
-              <BotIcon />
-            </template>
-          </CategoryListItem>
-        </li>
-        <li>
-          <CategoryListItem label="Others" :unread="unread">
-            <template #icon>
-              <OtherIcon />
-            </template>
-          </CategoryListItem>
-        </li>
-        <li>
-          <CategoryListItem label="Edit" :unread="unread">
-            <template #icon>
-              <EditIcon />
-            </template>
-          </CategoryListItem>
-        </li>
-      </ul>
-      <CategoryListItem label="Settings" :unread="unread">
-        <template #icon>
-          <SettingsIcon />
-        </template>
-      </CategoryListItem>
+    <AccountBtn />
+    <div class="flex flex-row items-center justify-center mb-2">
+      <hr class="w-8 h-0 rounded border-t-2 dark:border-t-gray-700" />
     </div>
+    <ChannelList />
+    <AddChannelBtn />
   </nav>
 </template>

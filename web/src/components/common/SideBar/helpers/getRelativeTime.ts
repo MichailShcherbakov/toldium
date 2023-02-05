@@ -1,3 +1,5 @@
 export function getRelativeTime(mt: Date): String {
-  return `${mt.getHours()}:${mt.getMinutes()} `;
+  const hours = mt.getHours().toString().padStart(2, "0");
+  const minutes = mt.getMinutes().toString().padStart(2, "0");
+  return `${hours}:${minutes} `;
 }

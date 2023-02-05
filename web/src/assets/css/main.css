@@ -18,6 +18,27 @@
   .w-26 {
     width: 6.5rem;
   }
+
+  .animate-smooth-rounded:hover > .animate-smooth-rounded__target {
+    border-radius: 0.75rem !important;
+  }
+
+  .animate-smooth-rounded__target {
+    border-radius: 50% !important;
+
+    -moz-transition: border-radius 0.1s ease-out;
+    -o-transition: border-radius 0.1s ease-out;
+    -webkit-transition: border-radius 0.1s ease-out;
+    transition: border-radius 0.1s ease-out;
+  }
+
+  .animate-smooth-rounded--fixed > .animate-smooth-rounded__target {
+    border-radius: 0.75rem !important;
+  }
+
+  .border-3 {
+    border-width: 3px;
+  }
 }
 
 @layer components {

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { UiAvatar } from "~/components/ui";
-import type { Member } from "~/stores/members/type";
+import type { GetMembersByChannelIdQuery } from "~/gql/graphql";
 
 defineProps<{
-  member: Member;
+  member: NonNullable<GetMembersByChannelIdQuery["getMembersByChannelId"][0]>;
 }>();
 </script>
 

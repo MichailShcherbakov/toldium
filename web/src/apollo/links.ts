@@ -5,12 +5,12 @@ import { useAuth } from "~/stores/auth/useAuth";
 import { getAccessToken } from "./utils";
 
 export const authLink = createHttpLink({
-  uri: "http://127.0.0.1:8080/graphql",
+  uri: import.meta.env.VITE_API_URL,
   credentials: "include",
 });
 
 export const mainLink = createHttpLink({
-  uri: "http://127.0.0.1:8080/graphql",
+  uri: import.meta.env.VITE_API_URL,
   credentials: "include",
 });
 

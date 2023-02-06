@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
+import { gql } from "~/gql";
 
-export const GET_CHANNELS = gql`
+export const GET_CHANNELS = gql(`
   query GetChannels {
     getChannels {
       id
@@ -25,10 +25,10 @@ export const GET_CHANNELS = gql`
       }
     }
   }
-`;
+`);
 
-export const GET_CHANNEL_BY_ID = gql`
-  query GetChannelById($channelId: String!) {
+export const GET_CHANNEL_BY_ID = gql(`
+  query GetChannelById($channelId: UUID!) {
     getChannelById(channelId: $channelId) {
       id
       name
@@ -41,4 +41,4 @@ export const GET_CHANNEL_BY_ID = gql`
       createdAt
     }
   }
-`;
+`);

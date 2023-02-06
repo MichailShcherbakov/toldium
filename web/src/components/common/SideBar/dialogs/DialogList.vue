@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { ChannelKind, useChannels } from "~/stores/channels";
+import { ChannelKindEnum } from "~/gql/graphql";
+import { useChannels } from "~/stores/channels/useChannels";
 import ChannelListItem from "./DialogListItem.vue";
 
 const { channels } = useChannels();
 const dialogs = computed(() =>
-  channels.value.filter((channel) => channel.kind === ChannelKind.DIALOG),
+  channels.value.filter((channel) => channel.kind === ChannelKindEnum.Dialog),
 );
 </script>
 

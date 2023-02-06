@@ -1,7 +1,11 @@
-import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { ChannelKind } from "~/db/entities/channel.entity";
+import { Field, Int, ObjectType, registerEnumType } from "@nestjs/graphql";
+import { ChannelKindEnum } from "~/db/entities/channel.entity";
 import { UUID } from "~/tools/scalar/uuid";
 import { Message } from "../messages/message.model";
+
+registerEnumType(ChannelKindEnum, {
+  name: "ChannelKindEnum",
+});
 
 @ObjectType()
 export class Channel {
@@ -17,8 +21,8 @@ export class Channel {
   @Field(() => String, { nullable: true })
   avatarURL!: string | null;
 
-  @Field(() => String)
-  kind!: ChannelKind;
+  @Field(() => ChannelKindEnum)
+  kind!: ChannelKindEnum;
 
   @Field(() => Int)
   memberLimit!: number;

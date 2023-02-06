@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CategoryListItem from "./CategoryListItem.vue";
+import CategoryListItem from "../categories/CategoryListItem.vue";
 import ChatsIcon from "~/assets/icons/chats.svg?component";
 import UnreadIcon from "~/assets/icons/unread.svg?component";
 import PersonIcon from "~/assets/icons/person.svg?component";

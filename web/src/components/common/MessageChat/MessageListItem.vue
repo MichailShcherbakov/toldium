@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { UiAvatar } from "~/components/ui";
-import type { Message } from "~/stores/messages/type";
+import type { GetMessagesByChannelIdQuery } from "~/gql/graphql";
 import { getRelativeTime } from "./helpers/getRelativeTime";
 
 const props = defineProps<{
-  message: Message;
+  message: NonNullable<
+    GetMessagesByChannelIdQuery["getMessagesByChannelId"][0]
+  >;
   onlyContent?: boolean;
 }>();
 
@@ -54,9 +56,7 @@ const OnPointerLeave = () => {
           </p>
         </div>
         <p class="w-full text-sm font-base dark:text-gray-100 break-words">
-          {{ message.member?.user?.name }}
-          {{ " " }}
-          {{ message.createdAt }}
+          {{ message.content }}
         </p>
       </div>
     </div>

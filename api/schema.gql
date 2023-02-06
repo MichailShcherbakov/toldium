@@ -45,13 +45,19 @@ type Channel {
   name: String!
   desc: String
   avatarURL: String
-  kind: String!
+  kind: ChannelKindEnum!
   memberLimit: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
   unread: Int!
   lastMessageId: UUID
   lastMessage: Message
+}
+
+enum ChannelKindEnum {
+  DIALOG
+  GROUP
+  PUBLIC
 }
 
 type Tokens {
@@ -64,7 +70,7 @@ type Query {
   getUsers: [User!]!
   getUserById(userId: UUID!): User
   getMessagesByChannelId(channelId: UUID!): [Message!]!
-  getChannelById(channelId: String!): Channel
+  getChannelById(channelId: UUID!): Channel
   getChannels: [Channel!]!
   getMembersByChannelId(channelId: UUID!): [Member!]!
 }

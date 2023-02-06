@@ -1,19 +1,19 @@
-import gql from "graphql-tag";
+import { gql } from "~/gql";
 
-export const SING_IN_MUT = gql`
+export const SING_IN_MUT = gql(`
   mutation SignIn($signInInput: SignInInput!) {
     signIn(signInInput: $signInInput) {
       accessToken
       refreshToken
     }
   }
-`;
+`);
 
-export const REFRESH_TOKENS_MUT = gql`
+export const REFRESH_TOKENS_MUT = gql(`
   mutation RefreshTokensWeb {
     refreshTokensWeb {
       accessToken
       refreshToken
     }
   }
-`;
+`);

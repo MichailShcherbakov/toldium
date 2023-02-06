@@ -3,7 +3,7 @@ import { IEntity } from "./entity.interface";
 import MemberEntity from "./member.entity";
 import MessageEntity from "./message.entity";
 
-export enum ChannelKind {
+export enum ChannelKindEnum {
   DIALOG = "DIALOG",
   GROUP = "GROUP",
   PUBLIC = "PUBLIC",
@@ -21,7 +21,7 @@ export class ChannelEntity extends IEntity {
   avatarURL!: string;
 
   @Column({ nullable: true })
-  kind!: ChannelKind;
+  kind!: ChannelKindEnum;
 
   @Column({ name: "member_limit", nullable: true })
   memberLimit!: number;

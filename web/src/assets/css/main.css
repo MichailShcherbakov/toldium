@@ -39,6 +39,14 @@
   .border-3 {
     border-width: 3px;
   }
+
+  .bg-gray-900\/85 {
+    background-color: rgb(17 24 39 / 0.85);
+  }
+
+  .bg-slate-900\/85 {
+    background-color: rgb(15 23 42 / 0.85);
+  }
 }
 
 @layer components {

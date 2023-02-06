@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   label: string;
-  modelValue: string;
+  modelValue?: string;
   required?: boolean;
   secure?: boolean;
 }>();

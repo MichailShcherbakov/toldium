@@ -6,6 +6,7 @@ import {
   ResolveField,
   Resolver,
 } from "@nestjs/graphql";
+import { UUID } from "~/tools/scalar/uuid";
 import AuthGuard from "../auth/auth.guard";
 import { CurrentUser, Iam } from "../auth/current-user";
 import { Message } from "../messages/message.model";
@@ -26,7 +27,7 @@ export class ChannelsResolver {
   @AuthGuard()
   @Query(_returns => Channel, { nullable: true })
   public async getChannelById(
-    @Args("channelId") channelId: string,
+    @Args("channelId", { type: () => UUID }) channelId: string,
   ): Promise<PrimitiveChannel | null> {
     const channel = await this.channelsService.getChannelById(channelId);
 

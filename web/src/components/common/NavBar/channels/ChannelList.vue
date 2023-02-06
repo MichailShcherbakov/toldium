@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { ChannelKind, useChannels, useCurrentChannel } from "~/stores/channels";
+import { useChannelStore } from "~/stores/channels/useCurrentChannel";
 import { useGoToChannelPage } from "~/router/routes/useGoToChannelPage";
-import ChannelListItem from "./ChannelListItem.vue";
+import ChannelListItem from "../channels/ChannelListItem.vue";
+import { useChannels } from "~/stores/channels/useChannels";
+import { ChannelKindEnum } from "~/gql/graphql";
 
 const { channels } = useChannels();
-const { currentChannelId } = useCurrentChannel();
+const channelStore = useChannelStore();
 
 const pubChannels = computed(() =>
   channels.value.filter(
     (channel) =>
-      channel.kind === ChannelKind.GROUP || channel.kind === ChannelKind.PUBLIC,
+      channel.kind === ChannelKindEnum.Group ||
+      channel.kind === ChannelKindEnum.Public,
   ),
 );
 
@@ -26,7 +29,7 @@ const handlerChannelListItemClick = (channelId: string) => {
     <li v-for="channel in pubChannels" :key="channel.id">
       <ChannelListItem
         :channel="channel"
-        :isActive="channel.id === currentChannelId"
+        :isActive="channel.id === channelStore.currentChannelId"
         @click="handlerChannelListItemClick(channel.id)"
       />
     </li>

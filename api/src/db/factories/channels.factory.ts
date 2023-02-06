@@ -1,5 +1,5 @@
 import { setSeederFactory } from "typeorm-extension";
-import ChannelEntity, { ChannelKind } from "../entities/channel.entity";
+import ChannelEntity, { ChannelKindEnum } from "../entities/channel.entity";
 
 export default setSeederFactory(ChannelEntity, faker => {
   const channel = new ChannelEntity();
@@ -7,8 +7,10 @@ export default setSeederFactory(ChannelEntity, faker => {
   channel.desc = faker.datatype.string();
   channel.avatarURL = faker.internet.avatar();
   channel.memberLimit = faker.datatype.number();
-  channel.kind = [ChannelKind.DIALOG, ChannelKind.GROUP, ChannelKind.PUBLIC][
-    faker.datatype.number({ max: 2 })
-  ];
+  channel.kind = [
+    ChannelKindEnum.DIALOG,
+    ChannelKindEnum.GROUP,
+    ChannelKindEnum.PUBLIC,
+  ][faker.datatype.number({ max: 2 })];
   return channel;
 });

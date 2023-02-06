@@ -5,14 +5,15 @@ import SideBar from "~/components/common/SideBar/SideBar.vue";
 import SideBarTitle from "~/components/common/SideBar/SideBarTitle.vue";
 import SideBarSubTitle from "~/components/common/SideBar/SideBarSubTitle.vue";
 import ChannelMemberList from "~/components/common/SideBar/channel-members/ChannelMemberList.vue";
-import { ChannelKind, useCurrentChannel } from "~/stores/channels";
+import { useCurrentChannel } from "~/stores/channels/useCurrentChannel";
+import { ChannelKindEnum } from "~/gql/graphql";
 
 const { currentChannel } = useCurrentChannel();
 
-const kind: Record<ChannelKind, string> = {
-  [ChannelKind.DIALOG]: "Dialog",
-  [ChannelKind.GROUP]: "Group",
-  [ChannelKind.PUBLIC]: "Channel",
+const kind: Record<ChannelKindEnum, string> = {
+  [ChannelKindEnum.Dialog]: "Dialog",
+  [ChannelKindEnum.Group]: "Group",
+  [ChannelKindEnum.Public]: "Channel",
 };
 </script>
 
@@ -21,7 +22,7 @@ const kind: Record<ChannelKind, string> = {
     <template #sidebar>
       <SideBar>
         <SideBarTitle>
-          {{ kind[currentChannel?.kind ?? ChannelKind.PUBLIC] }}
+          {{ kind[currentChannel?.kind ?? ChannelKindEnum.Public] }}
           Members</SideBarTitle
         >
         <SideBarSubTitle> ONLINE - 16 </SideBarSubTitle>

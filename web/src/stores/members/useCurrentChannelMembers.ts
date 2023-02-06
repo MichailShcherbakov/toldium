@@ -1,6 +1,6 @@
 import { useQuery } from "@vue/apollo-composable";
 import { computed } from "vue";
-import { useCurrentChannel } from "../channels";
+import { useCurrentChannel } from "../channels/useCurrentChannel";
 import { GET_CHANNEL_MEMBERS_BY_CHANNEL_ID } from "./queries";
 
 export const useCurrentChannelMembers = () => {

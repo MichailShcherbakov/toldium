@@ -5,7 +5,7 @@ import SideBar from "~/components/common/SideBar/SideBar.vue";
 
 <template>
   <main
-    class="flex flex-row w-screen h-screen bg-white dark:bg-slate-800/90 overflow-hidden"
+    class="flex flex-row w-screen h-screen bg-white dark:bg-gray-900/85 overflow-hidden"
   >
     <NavBar />
     <slot name="sidebar">

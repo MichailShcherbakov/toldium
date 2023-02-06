@@ -1,20 +1,23 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { UiAvatar, UiChip } from "~/components/ui";
+import type { GetChannelsQuery } from "~/gql/graphql";
 import { useGoToHomeChannelPage } from "~/router/routes/useGoToHomeChannelPage";
-import { useCurrentChannel, type Channel } from "~/stores/channels";
+import { useChannelStore } from "~/stores/channels/useCurrentChannel";
 import { useCurrentUser } from "~/stores/users/useCurrentUser";
 import { getRelativeTime } from "../helpers/getRelativeTime";
 
 const props = defineProps<{
-  channel: Channel;
+  channel: NonNullable<GetChannelsQuery["getChannels"][0]>;
 }>();
 
 const { navigate } = useGoToHomeChannelPage();
 const { currentUserId } = useCurrentUser();
-const { currentChannelId } = useCurrentChannel();
+const channelStore = useChannelStore();
 
-const isActive = computed(() => props.channel.id === currentChannelId.value);
+const isActive = computed(
+  () => props.channel.id === channelStore.currentChannelId,
+);
 
 const messageTime = computed(() =>
   props.channel.lastMessage

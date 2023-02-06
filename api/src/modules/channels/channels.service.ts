@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import ChannelEntity, { ChannelKind } from "~/db/entities/channel.entity";
+import ChannelEntity, { ChannelKindEnum } from "~/db/entities/channel.entity";
 import MemberEntity from "~/db/entities/member.entity";
 import UserEntity from "~/db/entities/user.entity";
 import { MembersService } from "../members/members.service";
@@ -32,7 +32,7 @@ export class ChannelsService {
     });
 
     const dialogIds = channels
-      .filter(c => c.kind === ChannelKind.DIALOG)
+      .filter(c => c.kind === ChannelKindEnum.DIALOG)
       .map(c => c.id);
 
     const members = await this.membersService.getMembersByChannelIds(dialogIds);
@@ -54,7 +54,7 @@ export class ChannelsService {
     const userById = new Map(users.map(u => [u.id, u]));
 
     return channels.map(channel => {
-      if (channel.kind !== ChannelKind.DIALOG) return channel;
+      if (channel.kind !== ChannelKindEnum.DIALOG) return channel;
 
       const otherUserId = userIdsByChannelId
         .get(channel.id)

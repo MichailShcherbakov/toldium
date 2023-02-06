@@ -1,14 +1,15 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { UiAvatar, UiChip } from "~/components/ui";
-import type { Channel } from "~/stores/channels";
-import { preventOverflow } from "./helpers";
+import type { GetChannelsQuery } from "~/gql/graphql";
+import { preventOverflow } from "../helpers";
 
-defineProps<{
-  channel: Channel;
+const props = defineProps<{
+  channel: NonNullable<GetChannelsQuery["getChannels"][0]>;
   isActive?: boolean;
 }>();
 
-const unread = preventOverflow(2481, 6, 999999);
+const unread = computed(() => preventOverflow(props.channel.unread, 6, 999999));
 </script>
 
 <template>
@@ -29,6 +30,6 @@ const unread = preventOverflow(2481, 6, 999999);
       :url="channel.avatarURL"
       class="animate-smooth-rounded__target"
     />
-    <UiChip :label="unread" class="absolute -bottom-1 right-2" />
+    <UiChip v-if="unread" :label="unread" class="absolute -bottom-1 right-2" />
   </button>
 </template>

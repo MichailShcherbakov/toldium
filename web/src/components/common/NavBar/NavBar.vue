@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import AccountBtn from "./AccountBtn.vue";
-import AddChannelBtn from "./AddChannelBtn.vue";
-import ChannelList from "./ChannelList.vue";
-// import CategoryList from "./CategoryList.vue";
+import AddChannelBtn from "./channels/AddChannelBtn.vue";
+import ChannelList from "./channels/ChannelList.vue";
 </script>
 
 <template>
   <nav
-    class="flex flex-col flex-shrink-0 h-full dark:bg-zinc-900/80 bg-gray-100 overflow-y-auto overflow-x-hidden pt-3"
+    class="flex flex-col flex-shrink-0 h-full dark:bg-zinc-800 bg-gray-100 overflow-y-auto overflow-x-hidden pt-3"
   >
     <AccountBtn />
     <div class="flex flex-row items-center justify-center mb-2">

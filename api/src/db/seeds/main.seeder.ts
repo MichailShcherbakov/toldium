@@ -1,7 +1,7 @@
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
 import { DataSource } from "typeorm";
 import UserEntity from "../entities/user.entity";
-import ChannelEntity, { ChannelKind } from "../entities/channel.entity";
+import ChannelEntity, { ChannelKindEnum } from "../entities/channel.entity";
 import MemberEntity from "../entities/member.entity";
 import { faker } from "@faker-js/faker";
 import MessageEntity from "../entities/message.entity";
@@ -34,7 +34,7 @@ export default class MainSeeder implements Seeder {
       ];
 
       switch (channel.kind) {
-        case ChannelKind.DIALOG: {
+        case ChannelKindEnum.DIALOG: {
           const user = users[dialogsCount++];
 
           members.push(
@@ -46,8 +46,8 @@ export default class MainSeeder implements Seeder {
 
           break;
         }
-        case ChannelKind.GROUP:
-        case ChannelKind.PUBLIC: {
+        case ChannelKindEnum.GROUP:
+        case ChannelKindEnum.PUBLIC: {
           for (let i = 0; i < faker.datatype.number({ min: 0, max: 5 }); ++i) {
             const userId = faker.datatype.number({
               min: 0,

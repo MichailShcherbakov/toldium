@@ -4,6 +4,9 @@ import SideBar from "~/components/common/SideBar/SideBar.vue";
 import SideBarTitle from "~/components/common/SideBar/SideBarTitle.vue";
 import DialogList from "~/components/common/SideBar/dialogs/DialogList.vue";
 import MessageChat from "~/components/common/MessageChat/MessageChat.vue";
+import { useChannelStore } from "~/stores/channels/useCurrentChannel";
+
+const channelStore = useChannelStore();
 </script>
 
 <template>
@@ -14,6 +17,6 @@ import MessageChat from "~/components/common/MessageChat/MessageChat.vue";
         <DialogList />
       </SideBar>
     </template>
-    <MessageChat />
+    <MessageChat v-if="channelStore.currentChannelId" />
   </MainLayout>
 </template>

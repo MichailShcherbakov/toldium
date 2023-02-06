@@ -40,12 +40,27 @@
     border-width: 3px;
   }
 
-  .bg-gray-900\/85 {
-    background-color: rgb(17 24 39 / 0.85);
+  .text-xxs {
+    font-size: 10px;
   }
 
-  .bg-slate-900\/85 {
-    background-color: rgb(15 23 42 / 0.85);
+  .shadow-divider-b {
+    box-shadow: 0px 0px 1px 1px var(--tw-shadow-color);
+  }
+
+  .scroller {
+    @apply scrollbar scrollbar-thumb-midnight-900 scrollbar-track-midnight-400;
+  }
+
+  .scroller::-webkit-scrollbar-thumb,
+  .scroller::-webkit-scrollbar-track {
+    border: 0.25rem solid transparent;
+    background-clip: padding-box;
+    border-radius: 0.5rem;
+  }
+
+  .scroller::-webkit-scrollbar-corner {
+    background-color: transparent;
   }
 }
 

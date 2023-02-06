@@ -12,7 +12,9 @@ const props = defineProps<{
 }>();
 
 const showHidden = ref(false);
-const messageTime = getRelativeTime(new Date(props.message.createdAt));
+const { fullLocaleTime, localeTime } = getRelativeTime(
+  new Date(props.message.createdAt),
+);
 
 const OnPointerEnter = () => {
   showHidden.value = true;
@@ -24,36 +26,37 @@ const OnPointerLeave = () => {
 
 <template>
   <div
-    class="flex flex-col w-full h-min"
+    class="flex flex-col w-full hover:dark:bg-midnight-300 py-1 px-4"
+    :class="{ 'mt-4': !onlyContent }"
     @pointerenter="OnPointerEnter"
     @pointerleave="OnPointerLeave"
   >
     <div class="flex flex-row w-full gap-4">
-      <div class="flex flex-row flex-shrink-0 w-10 justify-end">
+      <div class="flex flex-row flex-shrink-0 w-12 h-min justify-end py-0.5">
         <UiAvatar
           v-if="!onlyContent"
           :name="message.member?.user?.name ?? 'Unknown'"
           :url="message.member?.user?.avatarURL"
           size="sm"
         />
-        <p
+        <time
           v-if="onlyContent && showHidden"
-          class="text-xs dark:text-gray-500 py-0.5"
+          class="text-xxs dark:text-gray-400 align-text-bottom cursor-default"
         >
-          {{ messageTime }}
-        </p>
+          {{ localeTime }}
+        </time>
       </div>
       <div class="flex flex-col w-full overflow-hidden">
         <div
           v-if="!onlyContent"
           class="flex flex-row items-baseline w-full gap-2"
         >
-          <p class="text-md font-medium dark:text-gray-400">
+          <p class="text-md font-medium dark:text-gray-200">
             {{ message.member?.user?.name }}
           </p>
-          <p class="text-xs dark:text-gray-500">
-            {{ messageTime }}
-          </p>
+          <time class="text-xs dark:text-gray-400 cursor-default">
+            {{ fullLocaleTime }}
+          </time>
         </div>
         <p class="w-full text-sm font-base dark:text-gray-100 break-words">
           {{ message.content }}

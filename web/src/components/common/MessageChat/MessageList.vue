@@ -3,22 +3,33 @@ import { computed } from "vue";
 import { useCurrentChannelMessages } from "~/stores/messages/useCurrentChannelMessages";
 import MessageListItem from "./MessageListItem.vue";
 import _ from "lodash";
+import { isAtFiveMinutesPeriod } from "./helpers/getRelativeTime";
 
 const { messages } = useCurrentChannelMessages();
 
 const messageGroups = computed(() => {
-  let currentMessageMemberId = null;
+  let rootMessage = null;
+
   const groupedMessages = [];
 
   for (const message of messages.value) {
-    const isGrouped = currentMessageMemberId === message.member?.id;
+    const isGrouped = Boolean(
+      rootMessage &&
+        rootMessage.member.id === message.member.id &&
+        isAtFiveMinutesPeriod(
+          new Date(rootMessage.createdAt),
+          new Date(message.createdAt),
+        ),
+    );
 
     groupedMessages.push({
       message,
       isGrouped,
     });
 
-    currentMessageMemberId = message.member?.id;
+    if (!isGrouped) {
+      rootMessage = message;
+    }
   }
 
   return _.orderBy(
@@ -31,7 +42,7 @@ const messageGroups = computed(() => {
 
 <template>
   <ul
-    class="flex flex-col-reverse flex-1 mx-1 gap-4 overflow-x-hidden overflow-y-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-700/60 scrollbar-thumb-rounded-md scrollbar-track-rounded-md"
+    class="flex flex-col-reverse flex-1 overflow-x-hidden overflow-y-auto scroller"
   >
     <li
       v-for="{ message, isGrouped } in messageGroups"

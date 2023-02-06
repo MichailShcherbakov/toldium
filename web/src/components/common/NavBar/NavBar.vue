@@ -6,7 +6,7 @@ import ChannelList from "./channels/ChannelList.vue";
 
 <template>
   <nav
-    class="flex flex-col flex-shrink-0 h-full dark:bg-zinc-800 bg-gray-100 overflow-y-auto overflow-x-hidden pt-3"
+    class="flex flex-col flex-shrink-0 h-full dark:bg-midnight-900 bg-gray-100 overflow-y-auto overflow-x-hidden pt-3"
   >
     <AccountBtn />
     <div class="flex flex-row items-center justify-center mb-2">

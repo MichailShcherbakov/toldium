@@ -1,11 +1,8 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { UUID } from "~/tools/scalar/uuid";
+import { AbstractModel } from "../common/model.abstract";
 
 @ObjectType()
-export class User {
-  @Field(() => UUID)
-  id!: string;
-
+export class User extends AbstractModel {
   @Field(() => String)
   name!: string;
 
@@ -14,10 +11,4 @@ export class User {
 
   @Field(() => String, { nullable: true })
   avatarURL!: string | null;
-
-  @Field(() => Date)
-  createdAt!: Date;
-
-  @Field(() => Date)
-  updatedAt!: Date;
 }

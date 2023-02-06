@@ -23,7 +23,7 @@ const sizeClass = computed(() => SIZES[props.size ?? "md"]);
 
 <template>
   <div
-    class="flex flex-row flex-shrink-0 flex-grow-0 items-center justify-center cursor-pointer bg-blue-200 focus:ring-2 ring-offset-2 ui-ring overflow-hidden rounded-full"
+    class="flex flex-row flex-shrink-0 flex-grow-0 items-center justify-center bg-blue-200 focus:ring-2 ring-offset-2 ui-ring overflow-hidden rounded-full"
     :class="sizeClass"
   >
     <img

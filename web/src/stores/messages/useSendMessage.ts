@@ -14,15 +14,6 @@ export const useSendMessage = () => {
     update: (cache, { data: givenData }) => {
       if (!givenData) return;
 
-      console.log(
-        cache.readQuery({
-          query: GET_CHANNEL_MESSAGES_BY_CHANNEL_ID,
-          variables: {
-            channelId: currentChannelId.value,
-          },
-        }),
-      );
-
       let data = cache.readQuery({
         query: GET_CHANNEL_MESSAGES_BY_CHANNEL_ID,
         variables: {

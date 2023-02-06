@@ -2,18 +2,10 @@ import { Field, ObjectType } from "@nestjs/graphql";
 import { UUID } from "~/tools/scalar/uuid";
 import { Channel } from "~/modules/channels/channel.model";
 import { User } from "../users/user.model";
+import { AbstractModel } from "../common/model.abstract";
 
 @ObjectType()
-export class Member {
-  @Field(() => UUID)
-  id!: string;
-
-  @Field(() => Date)
-  createdAt!: Date;
-
-  @Field(() => Date)
-  updatedAt!: Date;
-
+export class Member extends AbstractModel {
   @Field(() => UUID)
   channelId!: string;
 

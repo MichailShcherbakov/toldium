@@ -4,11 +4,11 @@
 
 type User {
   id: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String!
   email: String!
   avatarURL: String
-  createdAt: DateTime!
-  updatedAt: DateTime!
 }
 
 """uuid type"""
@@ -31,9 +31,9 @@ type Member {
 
 type Message {
   id: UUID!
-  content: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  content: String!
   memberId: UUID!
   member: Member!
   channelId: UUID!
@@ -42,13 +42,13 @@ type Message {
 
 type Channel {
   id: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String!
   desc: String
   avatarURL: String
   kind: ChannelKindEnum!
   memberLimit: Int!
-  createdAt: DateTime!
-  updatedAt: DateTime!
   unread: Int!
   lastMessageId: UUID
   lastMessage: Message

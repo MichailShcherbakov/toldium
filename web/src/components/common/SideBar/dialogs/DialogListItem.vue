@@ -38,8 +38,8 @@ function handleClick() {
 
 <template>
   <button
-    class="flex flex-row flex-1 items-center w-full h-16 px-3 rounded gap-3 select-none cursor-pointer hover:bg-gray-100 hover:dark:bg-slate-700/40 focus:ring-2 ring-offset-1 ui-ring overflow-hidden"
-    :class="{ 'dark:bg-slate-700/70 hover:dark:bg-slate-700/70': isActive }"
+    class="flex flex-row flex-1 items-center w-full h-16 px-3 rounded gap-3 select-none cursor-pointer hover:bg-gray-100 hover:dark:bg-midnight-400 focus:ring-2 ring-offset-1 ui-ring overflow-hidden"
+    :class="{ 'dark:bg-midnight-200 hover:dark:bg-midnight-200': isActive }"
     @click="handleClick"
   >
     <UiAvatar :name="channel.name" :url="channel.avatarURL" size="md" />

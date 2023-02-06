@@ -2,6 +2,13 @@ import "~/env";
 import { resolve, sep } from "path";
 import { DataSourceOptions } from "typeorm";
 import { SeederOptions } from "typeorm-extension";
+import * as pg from "pg";
+
+// support UTC
+pg.types.setTypeParser(
+  pg.types.builtins.TIMESTAMP,
+  (val: string) => new Date(`${val}Z`),
+);
 
 export const PORT = process.env.PORT ?? 3000;
 

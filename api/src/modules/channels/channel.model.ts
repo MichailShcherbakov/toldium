@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType, registerEnumType } from "@nestjs/graphql";
 import { ChannelKindEnum } from "~/db/entities/channel.entity";
 import { UUID } from "~/tools/scalar/uuid";
+import { AbstractModel } from "../common/model.abstract";
 import { Message } from "../messages/message.model";
 
 registerEnumType(ChannelKindEnum, {
@@ -8,10 +9,7 @@ registerEnumType(ChannelKindEnum, {
 });
 
 @ObjectType()
-export class Channel {
-  @Field(() => UUID)
-  id!: string;
-
+export class Channel extends AbstractModel {
   @Field(() => String)
   name!: string;
 
@@ -26,12 +24,6 @@ export class Channel {
 
   @Field(() => Int)
   memberLimit!: number;
-
-  @Field(() => Date)
-  createdAt!: Date;
-
-  @Field(() => Date)
-  updatedAt!: Date;
 
   @Field(() => Int)
   unread!: number;

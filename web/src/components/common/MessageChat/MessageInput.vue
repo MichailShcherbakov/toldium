@@ -19,11 +19,11 @@ function handleSubmit() {
 
 <template>
   <form
-    class="flex flex-row flex-shrink-0 w-auto h-min max-h-1/2 px-6 pt-6"
+    class="flex flex-row flex-shrink-0 w-auto h-min max-h-1/2 p-4 pb-6"
     @submit.prevent="handleSubmit"
   >
     <div
-      class="flex flex-row flex-shrink-0 w-full h-full px-2 gap-2 border border-gray-200 bg-gray-50 dark:border-slate-700 dark:bg-slate-700 rounded-lg overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-700/60 scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-border-2"
+      class="flex flex-row flex-shrink-0 w-full h-full px-2 gap-2 border border-gray-200 bg-gray-50 dark:border-midnight-100 dark:bg-slate-400/10 rounded-lg overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-700/60 scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-border-2"
     >
       <div class="sticky top-0 flex flex-row items-center w-min h-min p-0.5">
         <UiIconBtn

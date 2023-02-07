@@ -1,17 +1,14 @@
 const MILLISECOND = 1;
 const SECOND = 1000 * MILLISECOND;
 const MINUTE = 60 * SECOND;
-const HOUR = 60 * MINUTE;
-const DAY = 24 * HOUR;
 
-export function getRelativeTime(from: Date) {
-  const mt = new Date(from.toISOString());
-  const deltaTime = Date.now() - mt.getTime();
+export function getRelativeTime(mt: Date) {
+  const now = new Date();
 
   let localeDate = "";
-  if (deltaTime / DAY <= 0) {
+  if (now.getDate() === mt.getDate()) {
     localeDate = "Today, at";
-  } else if (deltaTime / DAY <= 1) {
+  } else if (now.getDate() === mt.getDate() + 1) {
     localeDate = "Tomorrow, at";
   } else {
     localeDate = mt

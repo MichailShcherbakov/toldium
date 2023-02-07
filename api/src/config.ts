@@ -39,5 +39,5 @@ export const TYPEORM_CONFIG: DataSourceOptions & SeederOptions = {
   ],
   migrationsRun: false,
   synchronize: false,
-  logging: true,
+  logging: false,
 };

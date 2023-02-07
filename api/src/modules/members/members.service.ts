@@ -39,18 +39,10 @@ export class MembersService {
     });
   }
 
-  public async getMemberByUserId(
+  public async getMembersByUserId(
     userId: UserEntity["id"],
-  ): Promise<MemberEntity | null> {
-    return this.membersRepo.findOneBy({
-      userId,
-    });
-  }
-
-  public async getMemberByUserIdOrFail(
-    userId: UserEntity["id"],
-  ): Promise<MemberEntity> {
-    return this.membersRepo.findOneByOrFail({
+  ): Promise<MemberEntity[]> {
+    return this.membersRepo.findBy({
       userId,
     });
   }
@@ -65,17 +57,21 @@ export class MembersService {
 
   public async getMemberByChannelId(
     channelId: ChannelEntity["id"],
+    userId: UserEntity["id"],
   ): Promise<MemberEntity | null> {
     return this.membersRepo.findOneBy({
       channelId,
+      userId,
     });
   }
 
-  public async getMemberByChannelIdOfFail(
+  public async getMemberByChannelIdOrFail(
     channelId: ChannelEntity["id"],
+    userId: UserEntity["id"],
   ): Promise<MemberEntity> {
     return this.membersRepo.findOneByOrFail({
       channelId,
+      userId,
     });
   }
 

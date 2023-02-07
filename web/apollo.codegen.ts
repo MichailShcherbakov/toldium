@@ -3,11 +3,11 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-console.log("[schema]:", process.env.VITE_API_URL);
+console.log("[schema]:", process.env.VITE_API_HTTP_URL);
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: process.env.VITE_API_URL,
+  schema: process.env.VITE_API_HTTP_URL,
   documents: ["./src/**/*.ts"],
   generates: {
     "./src/gql/": {

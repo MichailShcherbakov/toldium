@@ -22,6 +22,9 @@ import { PubSub } from "graphql-subscriptions";
 import { InjectPubSub } from "../qraphql.module";
 import AuthGuard from "../auth/auth.guard";
 import { CurrentUser, Iam } from "../auth/current-user";
+import ChannelEntity from "~/db/entities/channel.entity";
+
+export const ON_MESSAGE_CREATED = "onMessageCreated";
 
 @Resolver(_of => Message)
 export class MessagesResolver {
@@ -74,16 +77,23 @@ export class MessagesResolver {
       await this.messagesService.createMessage(input),
     );
 
-    this.pubSub.publish("onMessageAdded", { onMessageAdded: message });
+    this.pubSub.publish(ON_MESSAGE_CREATED, { [ON_MESSAGE_CREATED]: message });
 
     return message;
   }
 
   @AuthGuard()
   @Subscription(_returns => Message, {
-    name: "onMessageAdded",
+    filter: (payload, vars) => {
+      return payload[ON_MESSAGE_CREATED].channelId === vars.channelId;
+    },
   })
-  onMessageAdded(@CurrentUser() _user: Iam) {
-    return this.pubSub.asyncIterator("onMessageAdded");
+  async onMessageCreated(
+    @CurrentUser() user: Iam,
+    @Args("channelId", { type: () => UUID }) channelId: ChannelEntity["id"],
+  ) {
+    await this.membersService.getMemberByChannelIdOrFail(channelId, user.id);
+
+    return this.pubSub.asyncIterator(ON_MESSAGE_CREATED);
   }
 }

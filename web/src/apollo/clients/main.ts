@@ -1,8 +1,8 @@
-import { ApolloClient, from } from "@apollo/client/core";
-import { accessLink, errorLink, mainLink } from "../links";
+import { ApolloClient } from "@apollo/client/core";
+import { splitLink } from "../links";
 import { cache } from "./cache";
 
 export const MainApolloClient = new ApolloClient({
-  link: from([accessLink, errorLink, mainLink]),
+  link: splitLink,
   cache,
 });

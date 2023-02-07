@@ -41,3 +41,24 @@ export const CREATE_MESSAGE_MUT = gql(`
     }
   }
 `);
+
+export const ON_MESSAGE_CREATED_SUBS = gql(`
+  subscription OnMessageCreated($channelId: UUID!) {
+    onMessageCreated(channelId: $channelId) {
+      id
+      content
+      updatedAt
+      createdAt
+      channelId
+      memberId
+      member {
+        id
+        user {
+          id
+          name
+          avatarURL
+        }
+      }
+    }
+  }
+`);

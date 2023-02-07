@@ -5,6 +5,8 @@ export const useAuth = defineStore("auth", () => {
   const accessToken = ref("");
 
   function setAccessToken(token: string) {
+    console.log("[authTokens]:", "set new token: ", token);
+
     accessToken.value = token;
   }
 

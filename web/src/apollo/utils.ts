@@ -1,15 +1,15 @@
-import type { Tokens } from "~/stores/auth/type";
 import { REFRESH_TOKENS_MUT } from "~/stores/auth/queries";
 import { AuthApolloClient } from "./clients";
 import { useAuth } from "~/stores/auth/useAuth";
 import { router } from "~/router";
+import type { Tokens } from "~/gql/graphql";
 
 let requestBuffer: Promise<Tokens> | null = null;
 
 function createTokenRefreshRequest(): Promise<Tokens> {
   if (requestBuffer) return requestBuffer;
 
-  requestBuffer = AuthApolloClient.mutate<{ refreshTokensWeb: Tokens }>({
+  requestBuffer = AuthApolloClient.mutate({
     mutation: REFRESH_TOKENS_MUT,
   })
     .then((result) => {

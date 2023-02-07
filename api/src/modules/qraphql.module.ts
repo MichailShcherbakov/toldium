@@ -5,7 +5,6 @@ import { GraphQLModule as GM } from "@nestjs/graphql";
 import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { UUID } from "../tools/scalar/uuid";
 import { PubSub } from "graphql-subscriptions";
-import { Context } from "graphql-ws";
 
 const PUB_SUB_TOKEN = "PUB_SUB";
 
@@ -36,15 +35,10 @@ export class GraphQLModule {
           subscriptions: {
             "graphql-ws": {
               path: "/graphql",
-              onConnect: (context: Context<any>) => {
-                /*  const { connectionParams, extra } = context;
-
-                extra.user = { user: {} }; */
-              },
             },
           },
           context: context => {
-            /* if (context?.extra?.request) {
+            if (context?.extra?.request) {
               return {
                 req: {
                   ...context?.extra?.request,
@@ -53,8 +47,9 @@ export class GraphQLModule {
                     ...context?.connectionParams,
                   },
                 },
+                res: context?.res,
               };
-            } */
+            }
 
             return { req: context.req, res: context.res };
           },

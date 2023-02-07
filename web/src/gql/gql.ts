@@ -20,6 +20,7 @@ const documents = {
     "\n  query GetMembersByChannelId($channelId: UUID!) {\n    getMembersByChannelId(channelId: $channelId) {\n      id\n      createdAt\n      updatedAt\n      channelId\n      userId\n      user {\n        name\n        id\n        email\n        avatarURL\n        createdAt\n        updatedAt\n      }\n    }\n  }\n": types.GetMembersByChannelIdDocument,
     "\n  query GetMessagesByChannelId($channelId: UUID!) {\n    getMessagesByChannelId(channelId: $channelId) {\n      id\n      content\n      updatedAt\n      createdAt\n      channelId\n      memberId\n      member {\n        id\n        user {\n          id\n          name\n          avatarURL\n        }\n      }\n    }\n  }\n": types.GetMessagesByChannelIdDocument,
     "\n  mutation CreateMessage($createMessageInput: CreateMessageInput!) {\n    createMessage(createMessageInput: $createMessageInput) {\n      id\n      content\n      updatedAt\n      createdAt\n      channelId\n      memberId\n      member {\n        id\n        user {\n          id\n          name\n          avatarURL\n        }\n      }\n    }\n  }\n": types.CreateMessageDocument,
+    "\n  subscription OnMessageCreated($channelId: UUID!) {\n    onMessageCreated(channelId: $channelId) {\n      id\n      content\n      updatedAt\n      createdAt\n      channelId\n      memberId\n      member {\n        id\n        user {\n          id\n          name\n          avatarURL\n        }\n      }\n    }\n  }\n": types.OnMessageCreatedDocument,
     "\n  query WhoAmI {\n    whoAmI {\n      id\n      name\n      email\n      avatarURL\n      createdAt\n      updatedAt\n    }\n  }\n": types.WhoAmIDocument,
 };
 
@@ -65,6 +66,10 @@ export function gql(source: "\n  query GetMessagesByChannelId($channelId: UUID!)
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  mutation CreateMessage($createMessageInput: CreateMessageInput!) {\n    createMessage(createMessageInput: $createMessageInput) {\n      id\n      content\n      updatedAt\n      createdAt\n      channelId\n      memberId\n      member {\n        id\n        user {\n          id\n          name\n          avatarURL\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation CreateMessage($createMessageInput: CreateMessageInput!) {\n    createMessage(createMessageInput: $createMessageInput) {\n      id\n      content\n      updatedAt\n      createdAt\n      channelId\n      memberId\n      member {\n        id\n        user {\n          id\n          name\n          avatarURL\n        }\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  subscription OnMessageCreated($channelId: UUID!) {\n    onMessageCreated(channelId: $channelId) {\n      id\n      content\n      updatedAt\n      createdAt\n      channelId\n      memberId\n      member {\n        id\n        user {\n          id\n          name\n          avatarURL\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  subscription OnMessageCreated($channelId: UUID!) {\n    onMessageCreated(channelId: $channelId) {\n      id\n      content\n      updatedAt\n      createdAt\n      channelId\n      memberId\n      member {\n        id\n        user {\n          id\n          name\n          avatarURL\n        }\n      }\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
